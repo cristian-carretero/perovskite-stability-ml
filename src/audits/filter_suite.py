@@ -395,7 +395,7 @@ def audit_filter_vs_clustering(merged: pd.DataFrame | None = None) -> None:
     print("(see that module's docstring for the design)")
     import subprocess
     result = subprocess.run(
-        [sys.executable, "-m", "src.audit_filter_vs_clustering"],
+        [sys.executable, "-m", "src.audits.filter_vs_clustering"],
         capture_output=True, text=True,
     )
     print(result.stdout)
