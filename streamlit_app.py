@@ -1,6 +1,6 @@
 """
-ParaSol Dashboard
-=================
+Perovskite Stability Dashboard
+==============================
 Meteorological and photovoltaic performance monitoring panel with
 Digital Twin integration for early failure detection.
 
@@ -55,7 +55,7 @@ from src.config import (
 # =====================================================================
 # 1. CONFIGURATION & CONSTANTS
 # =====================================================================
-st.set_page_config(layout="wide", initial_sidebar_state="expanded", page_title="ParaSol Dashboard")
+st.set_page_config(layout="wide", initial_sidebar_state="expanded", page_title="Perovskite Stability Dashboard")
 
 LOGO_URL = "https://www.emiliojuarez.es/imgs/logo-oss.jpg"
 CREATOR_NAME = "Cristian Carretero"
@@ -121,7 +121,7 @@ RESOLUTION_LABELS = {
 PLOTLY_CONFIG = {
     "modeBarButtonsToRemove": ["autoScale2d", "select2d", "lasso2d"],
     "displaylogo": False,
-    "toImageButtonOptions": {"format": "png", "filename": "parasol_chart", "height": 600, "width": 1000, "scale": 2},
+    "toImageButtonOptions": {"format": "png", "filename": "perovskite_chart", "height": 600, "width": 1000, "scale": 2},
 }
 
 
@@ -1261,13 +1261,21 @@ def render_toolbar(min_date: datetime.date, max_date: datetime.date) -> tuple[st
 
 
 def render_branding() -> None:
-    st.logo(LOGO_URL, size="large", link=LOGO_URL)
+    # ParaSol logo intentionally not used: the dashboard is a personal ML project
+    # built on ParaSol data, not an official ParaSol product.
+    pass
 
 
 def render_sidebar_footer() -> None:
+    st.sidebar.caption(
+        "Telemetry data provided by the [ParaSol platform](https://www.emiliojuarez.es) — "
+        "OSS Lab, University of Zaragoza."
+    )
+    st.sidebar.markdown("<div style='height: 0.8rem;'></div>", unsafe_allow_html=True)
+    st.sidebar.divider()
     st.sidebar.markdown(
         f"""
-        <div style='text-align: center; font-size: 0.85rem; color: #64748B; margin-top: 1rem;'>
+        <div style='text-align: center; font-size: 0.85rem; color: #64748B; margin-top: 0.5rem;'>
             Developed by <br>
             <a href='{CREATOR_LINK}' target='_blank' style='color: #36B9CC; text-decoration: none; font-weight: 600;'>
                 {CREATOR_NAME}
@@ -2848,7 +2856,7 @@ def _render_trajectory_expander() -> None:
                 "much the persistence correction helps over the motor."
             )
         else:
-            st.info("No calibration JSON found. Run `python -m src.trajectory_calibration_optimizer`.")
+            st.info("No calibration JSON found. Run `python -m src.calibration.trajectory_optimizer`.")
 
         # ---------------- MAE table ----------------
         st.markdown("##### Forecast error (LOOCV, 14-day window)")
@@ -2967,7 +2975,7 @@ def general_overview() -> None:
         max_date = datetime.date.today()
         min_date = max_date - datetime.timedelta(days=30)
 
-    st.markdown("### ParaSol Dashboard")
+    st.markdown("### Perovskite Stability Dashboard")
     st.caption("Global fleet monitoring, early failure detection, and environmental context.")
     st.markdown("<div style='height: 0.4rem;'></div>", unsafe_allow_html=True)
     time_window, start_date, end_date = render_toolbar(min_date, max_date)
