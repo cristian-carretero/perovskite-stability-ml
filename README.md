@@ -24,25 +24,29 @@ This project builds a complete ML stack on top of **28M+ telemetry points** from
 ---
 
 ## Repository Structure
-├── src/
-│ ├── 01_ingest_raw.py
-│ ├── 02_jv_filtering.py
-│ ├── 03_jv_clustering.py
-│ ├── 04_mppt_aggregation.py
-│ ├── 05_merge_jv_mppt.py
-│ ├── 06_jv_mppt_t80_tracker.py
-│ ├── 07_jv_mppt_early_screening.py
-│ ├── 08_mppt_rul_forecasting.py
-│ ├── 09_jv_mppt_trajectory_forecasting.py
-│ ├── config.py
-│ ├── audits/ # Diagnostic and calibration audit scripts
-│ ├── calibration/ # Optimizers for RUL and trajectory coefficients
-│ ├── viz/ # Plotting utilities
-│ ├── xai/ # SHAP-based explainability modules
-│ └── archive/ # Deprecated code (kept for reference)
-├── streamlit_app.py # Interactive dashboard
-├── main.py # Pipeline orchestrator
-└── requirements.txt
+
+```
+src/
+├── 01_ingest_raw.py
+├── 02_jv_filtering.py
+├── 03_jv_clustering.py
+├── 04_mppt_aggregation.py
+├── 05_merge_jv_mppt.py
+├── 06_jv_mppt_t80_tracker.py
+├── 07_jv_mppt_early_screening.py
+├── 08_mppt_rul_forecasting.py
+├── 09_jv_mppt_trajectory_forecasting.py
+├── config.py
+├── audits/          # Diagnostic and calibration audit scripts
+├── calibration/     # Optimizers for RUL and trajectory coefficients
+├── viz/             # Plotting utilities
+├── xai/             # SHAP-based explainability modules
+└── archive/         # Deprecated code (kept for reference)
+
+streamlit_app.py     # Interactive dashboard
+main.py              # Pipeline orchestrator
+requirements.txt     # Python dependencies
+```
 
 ---
 
@@ -67,12 +71,13 @@ Python, pandas, numpy, scikit-learn, XGBoost, PyArrow, Plotly, Streamlit, SHAP, 
 The telemetry data analyzed in this project was provided by the **ParaSol platform** at the **Open Solar Stability (OSS) Lab**, University of Zaragoza (Spain), led by Dr. Emilio J. Juarez-Perez. Data was shared with the **University of Seville** for collaborative research.
 
 **ParaSol platform details:**
+
 - Outdoor testing facility for perovskite solar cell stability under real environmental conditions
 - MPPT tracking: Perovskino galvanostatic tracker (open-source, high-hysteresis capable)
 - IV sweeps: Reverse + Forward scan directions
 - Sensors: POA reference cell, ambient/module thermistors, capacitive humidity sensor
-- Platform: https://www.emiliojuarez.es
-- OSS Lab GitHub: https://github.com/ej-jp/perovskino
+- Platform: [www.emiliojuarez.es](https://www.emiliojuarez.es)
+- OSS Lab GitHub: [github.com/ej-jp/perovskino](https://github.com/ej-jp/perovskino)
 
 **My contribution** focuses on the machine learning layer: data engineering (28M+ telemetry points), Digital Twin early screening, T80 survival tracking, RUL forecasting, and Explainable AI (SHAP). The platform hardware, data collection, and experimental design are the work of the OSS Lab team.
 
